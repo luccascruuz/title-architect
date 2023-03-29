@@ -1,0 +1,33 @@
+
+.contentInputTheme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.InputTheme {
+    height: 2rem;
+    width: 50%;
+    padding: 8px;
+    font-family: var(--font-mono);
+    border: 1px solid rgb(var(--primary-glow));
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(180, 180, 180);
+    transition: box-shadow 0.3s;
+}
+.InputTheme:focus {
+    box-shadow: 3px 3px 3px rgb(208, 208, 208);
+}
+.labelTheme {
+    font-family: var(--font-mono);
+}
+
+@media (max-width: 1023px) {
+    
+    .InputTheme {
+        width: 100%;
+    }
+}

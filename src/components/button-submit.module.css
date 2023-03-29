@@ -1,0 +1,29 @@
+
+.buttonSubmit {
+    cursor: pointer;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.5em;
+    font-family: var(--font-mono);
+
+    border: 2px solid white;
+    transition: box-shadow 0.3s;
+    transition: all 0.3s;
+}
+.buttonSubmit:hover {
+    box-shadow: 1px 1px 3px 1px gray;
+    text-shadow: 1.5px 1.5px 2px gray;
+}
+.buttonSubmit:active {
+    box-shadow: none;
+    text-shadow: none;
+    border: 2px solid gray;
+
+}
+
+@media (max-width: 1023px) {
+    .buttonSubmit {
+        box-shadow: 1px 1px 3px 1px gray;
+        text-shadow: 1.5px 1.5px 2px gray;
+    }
+}

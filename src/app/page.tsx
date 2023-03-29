@@ -1,91 +1,61 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+"use client";
+import { useState } from "react";
+import styles from "./page.module.css";
+import { Title } from "@/components/title";
+import { InputTheme } from "@/components/input-theme";
+import { ButtonSubmit } from "@/components/button-submit";
+import { openaiApi } from "../api/openaiApi";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [titleValue, setTitleValue] = useState<string>();
+
+  async function handleSubmit(event: any) {
+    event.preventDefault();
+    setIsLoading(true);
+
+    const themeValue = event.target.tema.value;
+    const keyWordsValue = event.target.palavrasChave.value;
+
+    try {
+      const result = await openaiApi(themeValue, keyWordsValue);
+      setIsLoading(false);
+
+      console.log(result);
+      setTitleValue(result);
+    } catch (err) {
+      setTitleValue("Ocorreu um erro, tente novamente :(");
+      setIsLoading(false);
+      console.log(err);
+    }
+  }
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+      <Title />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <InputTheme
+          name="tema"
+          labelName="Tema"
+          placeHolderName="Estudo sobre casos de covid em pequenas comunidades"
         />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+        <InputTheme
+          name="palavrasChave"
+          labelName="Palavras-chave"
+          placeHolderName="covid, pequenas comunidades, pandemia, gripe"
+        />
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        <ButtonSubmit />
+      </form>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {isLoading ? (
+        <p className={styles.loading}>Criando...</p>
+      ) : titleValue ? (
+        <p className={`${styles.titleAnimation} ${styles.typeAnimation}`}>
+          {titleValue}
+        </p>
+      ) : null}
     </main>
-  )
+  );
 }
