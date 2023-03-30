@@ -5,6 +5,7 @@ import { Title } from "@/components/title";
 import { InputTheme } from "@/components/input-theme";
 import { ButtonSubmit } from "@/components/button-submit";
 import { openaiApi } from "../api/openaiApi";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +37,6 @@ export default function Home() {
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-
       <main className={styles.main}>
         <Title />
 
@@ -63,6 +63,7 @@ export default function Home() {
           </p>
         ) : null}
       </main>
+      <Analytics />
     </>
   );
 }
