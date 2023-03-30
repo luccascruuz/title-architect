@@ -14,7 +14,7 @@
     padding: 8px;
     font-size: 16px;
     font-family: var(--font-mono);
-    border: 1px solid rgb(var(--primary-glow));
+    border: 1px solid var(--color-border-shadow);
     border-radius: 5px;
     box-shadow: 1px 1px 1px rgb(180, 180, 180);
     transition: box-shadow 0.3s;
