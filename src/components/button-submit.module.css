@@ -6,24 +6,25 @@
     border-radius: 0.5em;
     font-family: var(--font-mono);
 
-    border: 2px solid white;
+    border: 1px solid var(--border-input);
     transition: box-shadow 0.3s;
     transition: all 0.3s;
+    color: var(--font-color);
 }
 .buttonSubmit:hover {
-    box-shadow: 1px 1px 3px 1px gray;
-    text-shadow: 1.5px 1.5px 2px gray;
+    box-shadow: 1px 1px 3px 1px var(--color-border-shadow);
+    text-shadow: 1.5px 1.5px 2px var(--color-border-shadow);
 }
 .buttonSubmit:active {
     box-shadow: none;
     text-shadow: none;
-    border: 2px solid gray;
+    border: 2px solid var(--color-border-shadow);
 
 }
 
 @media (max-width: 1023px) {
     .buttonSubmit {
-        box-shadow: 1px 1px 3px 1px gray;
-        text-shadow: 1.5px 1.5px 2px gray;
+        box-shadow: 1px 1px 3px 1px var(--color-border-shadow);
+        text-shadow: 1.5px 1.5px 2px var(--color-border-shadow);
     }
 }
