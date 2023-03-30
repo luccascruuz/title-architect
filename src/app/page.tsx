@@ -31,31 +31,38 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
-      <Title />
+    <>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
 
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <InputTheme
-          name="tema"
-          labelName="Tema"
-          placeHolderName="Estudo sobre casos de covid em pequenas comunidades"
-        />
-        <InputTheme
-          name="palavrasChave"
-          labelName="Palavras-chave"
-          placeHolderName="covid, pequenas comunidades, pandemia, gripe"
-        />
+      <main className={styles.main}>
+        <Title />
 
-        <ButtonSubmit />
-      </form>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <InputTheme
+            name="tema"
+            labelName="Tema"
+            placeHolderName="Estudo sobre casos de covid em pequenas comunidades"
+          />
+          <InputTheme
+            name="palavrasChave"
+            labelName="Palavras-chave"
+            placeHolderName="covid, pequenas comunidades, pandemia, gripe"
+          />
 
-      {isLoading ? (
-        <p className={styles.loading}>Criando...</p>
-      ) : titleValue ? (
-        <p className={`${styles.titleAnimation} ${styles.typeAnimation}`}>
-          {titleValue}
-        </p>
-      ) : null}
-    </main>
+          <ButtonSubmit />
+        </form>
+
+        {isLoading ? (
+          <p className={styles.loading}>Criando...</p>
+        ) : titleValue ? (
+          <p className={`${styles.titleAnimation} ${styles.typeAnimation}`}>
+            {titleValue}
+          </p>
+        ) : null}
+      </main>
+    </>
   );
 }
