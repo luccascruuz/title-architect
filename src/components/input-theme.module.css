@@ -8,8 +8,40 @@
     width: 100%;
 }
 
+.contentInputFocus::after {
+    background: black;
+    width: 50%;
+    height: 1.25rem;
+    z-index: -1;
+    margin-left: -20rem;
+    margin-top: 2rem;
+    animation: shadowLabel 1s none normal;
+}
+
+@keyframes shadowLabel {
+    from {
+        width: 0%;
+        height: 0;
+    }
+    to {
+        width: 50%;
+        height: 1.25rem
+    }
+}
+
+.contentInputFocus::before,
+.contentInputFocus::after {
+    content: '';
+    left: 50%;
+    position: absolute;
+    filter: blur(45px);
+    transform: translateZ(0);
+    transition: margin 1s;
+}
+
+
 .InputTheme {
-    height: 2rem;
+    height: 2.125rem;
     width: 50%;
     padding: 8px;
     font-size: 16px;
@@ -35,4 +67,9 @@
     .InputTheme {
         width: 100%;
     }
+
+.contentInputFocus::after {
+    margin-left: -5rem;
+    width: 50%;
+}
 }
