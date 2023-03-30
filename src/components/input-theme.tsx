@@ -11,19 +11,42 @@ export function InputTheme({
   placeHolderName,
   name,
 }: InputThemeProps) {
+  function handleHeigthInput() {
+    const inputDoc = document.getElementById(name);
+
+    inputDoc?.addEventListener("input", () => {
+      inputDoc.style.height = inputDoc.scrollHeight + "px";
+    });
+  }
+  function addTextShadow() {
+    const labelTag = document.getElementById(`${name}${styles.labelTheme}`);
+    labelTag!.style.textShadow = "1px 1px 2px gray";
+  }
+  function removeTextShadow() {
+    const labelTag = document.getElementById(`${name}${styles.labelTheme}`);
+    labelTag!.style.textShadow = "inherit";
+  }
   return (
     <div className={styles.contentInputTheme}>
-      <label htmlFor={name} className={styles.labelTheme}>
+      <label
+        htmlFor={name}
+        id={`${name}${styles.labelTheme}`}
+        className={styles.labelTheme}
+      >
         {labelName}
       </label>
-      <input
+      <textarea
         autoComplete="off"
         placeholder={`Exemplo: ${placeHolderName}`}
         className={styles.InputTheme}
         id={name}
         name={name}
-        type="text"
         required
+        onBlur={() => removeTextShadow()}
+        onFocus={() => {
+          handleHeigthInput();
+          addTextShadow();
+        }}
       />
     </div>
   );

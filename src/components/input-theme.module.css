@@ -18,12 +18,16 @@
     border-radius: 5px;
     box-shadow: 1px 1px 1px rgb(180, 180, 180);
     transition: box-shadow 0.3s;
+    overflow: hidden;
+    resize: none;
 }
 .InputTheme:focus {
     box-shadow: 3px 3px 3px rgb(208, 208, 208);
+    border: 1px solid var(--color-border-shadow);
 }
 .labelTheme {
     font-family: var(--font-mono);
+    transition: text-shadow 0.3s;
 }
 
 @media (max-width: 1023px) {

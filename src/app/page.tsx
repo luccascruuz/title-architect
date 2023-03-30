@@ -22,7 +22,6 @@ export default function Home() {
       const result = await openaiApi(themeValue, keyWordsValue);
       setIsLoading(false);
 
-      console.log(result);
       setTitleValue(result);
     } catch (err) {
       setTitleValue("Ocorreu um erro, tente novamente :(");
@@ -33,23 +32,16 @@ export default function Home() {
 
   return (
     <>
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
       <main className={styles.main}>
         <Title />
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <InputTheme
-            name="tema"
-            labelName="Tema"
-            placeHolderName="Estudo sobre casos de covid em pequenas comunidades"
-          />
+          <InputTheme name="tema" labelName="Tema" placeHolderName="Covid-19" />
+
           <InputTheme
             name="palavrasChave"
             labelName="Palavras-chave"
-            placeHolderName="covid, pequenas comunidades, pandemia, gripe"
+            placeHolderName="covid, pandemia"
           />
 
           <ButtonSubmit />
